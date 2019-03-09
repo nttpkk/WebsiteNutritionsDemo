@@ -29,7 +29,9 @@ namespace AspNetCoreWebAppBackend
                 options.AddPolicy("MyOwnCorsPolicy",
                 builder =>
                 {
-                    builder.AllowAnyOrigin();
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
                 });
             });
             services.Configure<CookiePolicyOptions>(options =>
