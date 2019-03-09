@@ -25,7 +25,7 @@ namespace AspNetCoreWebAppBackend.Controllers
 
         [HttpPost]
         [Route("")]
-        public bool CreateNewUser(Users newUser)
+        public bool CreateNewUser([FromBody] Users newUser)
         {
             NutritionsDBContext context = new NutritionsDBContext();
             context.Users.Add(newUser);
@@ -35,7 +35,7 @@ namespace AspNetCoreWebAppBackend.Controllers
 
         [HttpPut]
         [Route("{userID}")]
-        public Users ModifyUser(string userID, [FromBody] Users updatedUser)
+        public Users ModifyUser(int userID, [FromBody] Users updatedUser)
         {
             NutritionsDBContext context = new NutritionsDBContext();
             Users user = context.Users.Find(userID);
@@ -55,7 +55,7 @@ namespace AspNetCoreWebAppBackend.Controllers
 
         [HttpDelete]
         [Route("{userID}")]
-        public bool DeleteUser(string userID)
+        public bool DeleteUser(int userID)
         {
             NutritionsDBContext context = new NutritionsDBContext();
             Users user = context.Users.Find(userID);
