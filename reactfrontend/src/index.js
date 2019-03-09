@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Userlist from './Userlist';
+import Navbar from './Navbar';
 
 ReactDOM.render(
     <div>
         {/* <App /> */}
+        <Navbar/>
         <Userlist/>
     </div>
     , document.getElementById('root'));
