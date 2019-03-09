@@ -4,7 +4,7 @@ class Userlist extends Component {
     constructor(props) {
         super(props);
         console.log("Userlist.constructor");
-        this.state = { ladattu: false, data: null };
+        this.state = { downloaded: false, data: null };
     }
     componentDidMount() {
         console.log("Userlist.componentDidMount");
@@ -14,14 +14,14 @@ class Userlist extends Component {
         .then(json => {
             console.log("Fetch-call ready!");
             console.log(json);
-            komponentti.setState({ladattu: true, data: json});
+            komponentti.setState({downloaded: true, data: json});
             console.log("SetState-routine has been called.");
         });
         console.log("Userlist.componentDidMount: fetch-call made");
     }
   render() {
     console.log("Userlist.render");
-    if (this.state.ladattu === false) {
+    if (this.state.downloaded === false) {
         return (
             <div>
                 <h1>Wait few moments, Loading data..</h1>

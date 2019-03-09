@@ -5,12 +5,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Userlist from './Userlist';
 import Navbar from './Navbar';
+import ButtonAddUser from './ButtonAddUser';
 
 ReactDOM.render(
     <div>
         {/* <App /> */}
         <Navbar/>
         <Userlist/>
+        <ButtonAddUser/>
     </div>
     , document.getElementById('root'));
 
