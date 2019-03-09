@@ -4,8 +4,8 @@ class ButtonAddUser extends Component {
   AddUser(){
     let data = 
     {
-      userName: "ReactTEST",
-      events: []
+      "userName": "ReactTEST",
+      "events": []
   };
 
   let url = "https://localhost:44300/api/users";
@@ -22,14 +22,14 @@ class ButtonAddUser extends Component {
       body: JSON.stringify(data), // body data type must match "Content-Type" header
   });
 
-  alert("Fetch-pyyntö lähetetty!");
+  alert("Fetch-request has been sent!");
 }
 
   render() {
     return (
       <div>
           <p></p>
-          <button onClick={this.lisääAsiakas} type="button" class="btn btn-primary">Add new user to Database</button>
+          <button onClick={this.AddUser} type="button" class="btn btn-primary">Add new user to Database</button>
           <p></p>
       </div>
     );
