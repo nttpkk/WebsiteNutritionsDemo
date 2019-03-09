@@ -13,13 +13,62 @@ namespace AspNetCoreWebAppBackend.Controllers
     [ApiController]
     public class UsersApiController : ControllerBase
     {
+        [HttpGet]
         [Route("")]
-        public List<Users> Listing()
+        public List<Users> ListUsers()
         {
             NutritionsDBContext context = new NutritionsDBContext();
             List<Users> allUsers = context.Users.ToList();
 
             return allUsers;
+        }
+
+        [HttpPost]
+        [Route("")]
+        public bool CreateNewUser(Users newUser)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            context.Users.Add(newUser);
+            context.SaveChanges();
+            return true;
+        }
+
+        [HttpPut]
+        [Route("{userID}")]
+        public Users ModifyUser(string userID, [FromBody] Users updatedUser)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            Users user = context.Users.Find(userID);
+
+            // Are we able to find user with given ID?
+            if (user == null)
+            {
+                return null;
+            }
+
+            // modification takes places
+            user.UserName = updatedUser.UserName;
+            context.SaveChanges();
+
+            return user;
+        }
+
+        [HttpDelete]
+        [Route("{userID}")]
+        public bool DeleteUser(string userID)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            Users user = context.Users.Find(userID);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            context.Users.Remove(user);
+            context.SaveChanges();
+
+            return true;
         }
 
         //private readonly NutritionsDBContext _context;
@@ -48,7 +97,7 @@ namespace AspNetCoreWebAppBackend.Controllers
         //[HttpPut("{id}")]
         //public async Task<IActionResult> PutUsers(int id, Users users)
         //{
-        //    if (id != users.UserId)
+        //    if (id != users.userID)
         //    {
         //        return BadRequest();
         //    }
@@ -76,7 +125,7 @@ namespace AspNetCoreWebAppBackend.Controllers
         //{
         //    _context.Users.Add(users);
         //    await _context.SaveChangesAsync();
-        //    return CreatedAtAction("GetUsers", new { id = users.UserId }, users);
+        //    return CreatedAtAction("GetUsers", new { id = users.userID }, users);
         //}
         //// DELETE: api/UsersApi/5
         //[HttpDelete("{id}")]
@@ -93,7 +142,7 @@ namespace AspNetCoreWebAppBackend.Controllers
         //}
         //private bool UsersExists(int id)
         //{
-        //    return _context.Users.Any(e => e.UserId == id);
+        //    return _context.Users.Any(e => e.userID == id);
         //}
     }
 }
