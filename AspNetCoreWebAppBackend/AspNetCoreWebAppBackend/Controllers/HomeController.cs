@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreWebAppBackend.Models;
+using AspNetCoreWebAppBackend.Database;
 
 namespace AspNetCoreWebAppBackend.Controllers
 {
@@ -24,6 +25,12 @@ namespace AspNetCoreWebAppBackend.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult Foods()
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            List<Foods> allFoods = context.Foods.ToList();
+            return View(allFoods);
         }
     }
 }

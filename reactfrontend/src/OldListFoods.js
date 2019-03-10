@@ -57,6 +57,7 @@ class ListFoods extends Component {
                         <th scope="col">B</th>
                         <th scope="col">C</th>
                         <th scope="col">D</th>
+                        <th scope="col">E</th>
                         </tr>
                     </thead>
                     <tbody>
