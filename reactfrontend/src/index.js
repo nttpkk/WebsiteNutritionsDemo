@@ -8,8 +8,10 @@ import OldApp123 from './OldApp123';
 
 ReactDOM.render(
     <div>
-    <ListUsersApp/>
-    <OldApp123/>
+        <p></p>
+        <ListFoodsApp/>
+        <p></p>
+        <OldApp123/>
     </div>
     , document.getElementById('root'));
 

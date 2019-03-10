@@ -15,52 +15,53 @@ namespace AspNetCoreWebAppBackend.Controllers
     {
         [HttpGet]
         [Route("")]
-        public List<Foods> Listing()
+        public List<Foods> ListFoods()
         {
             NutritionsDBContext context = new NutritionsDBContext();
             List<Foods> allFoods = context.Foods.ToList();
 
             return allFoods;
         }
+
         [HttpPost]
         [Route("")]
-        public bool CreateNewEvent([FromBody] Events newEvent)
+        public bool CreateNewFood([FromBody] Foods newFood)
         {
             NutritionsDBContext context = new NutritionsDBContext();
-            context.Events.Add(newEvent);
+            context.Foods.Add(newFood);
             context.SaveChanges();
             return true;
         }
 
-        [HttpPut]
-        [Route("{foodID}")]
-        public Events ModifyEvent(int foodID, Events updatedEvent)
-        {
-            NutritionsDBContext context = new NutritionsDBContext();
-            Events foodVariable = context.Events.Find(foodID);
-            if (foodVariable == null)
-            {
-                return null;
-            }
-            foodVariable.FoodAmount = updatedEvent.FoodAmount;
-            context.SaveChanges();
+        //[HttpPut]
+        //[Route("{foodID}")]
+        //public Foods ModifyFood(int foodID, Foods updatedFood)
+        //{
+        //    NutritionsDBContext context = new NutritionsDBContext();
+        //    Foods foodVariable = context.Foods.Find(foodID);
+        //    if (foodVariable == null)
+        //    {
+        //        return null;
+        //    }
+        //    foodVariable.FoodName = updatedFood.FoodName;
+        //    context.SaveChanges();
 
-            return foodVariable;
-        }
+        //    return foodVariable;
+        //}
 
         [HttpDelete]
         [Route("{foodID}")]
-        public bool DeleteEvent(int foodID)
+        public bool DeleteFood(int foodID)
         {
             NutritionsDBContext context = new NutritionsDBContext();
-            Events foodVariable = context.Events.Find(foodID);
+            Foods foodVariable = context.Foods.Find(foodID);
 
             if (foodVariable == null)
             {
                 return false;
             }
 
-            context.Events.Remove(foodVariable);
+            context.Foods.Remove(foodVariable);
             context.SaveChanges();
 
             return true;

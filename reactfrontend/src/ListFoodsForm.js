@@ -9,7 +9,6 @@ class ListFoodsForm extends Component {
   formSubmit(event) {
     event.preventDefault();
     const form = event.target;
-    // const id = form.elements["id"].value;
     const name = form.elements["name"].value;
     const foodCarb = form.elements["foodCarb"].value;
     const foodProt = form.elements["foodProt"].value;

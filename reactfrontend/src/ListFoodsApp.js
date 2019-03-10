@@ -14,9 +14,29 @@ class ListFoodsApp extends Component {
   }
 
   addFood(name, foodCarb, foodProt, foodFat) {
-    this.setState(prevState => ({
-      food: [...prevState.food, {name, foodCarb, foodProt, foodFat}]
-    }));
+    // this.setState(prevState => ({food: [...prevState.food, { name, foodCarb, foodProt, foodFat }]}));
+    this.setState({name, foodCarb, foodProt, foodFat}); // This works really well!
+        let data = 
+        {
+          "foodName": name,
+          "foodCarbonhydrate": foodCarb,
+          "foodProtein": foodProt,
+          "foodFat": foodFat,
+
+      };
+      let url = "https://localhost:44300/api/foods/";
+      fetch(url, {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, cors, *same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+              "Content-Type": "application/json"
+          },
+          redirect: "follow", // manual, *follow, error
+          referrer: "no-referrer", // no-referrer, *client
+          body: JSON.stringify(data), // body data type must match "Content-Type" header
+        }); 
   }
 
   componentDidMount() {
@@ -33,10 +53,7 @@ class ListFoodsApp extends Component {
 
   deleteFood(foodId) {
     return () => {
-      this.setState(prevState => ({
-        food: prevState.food.filter(food => food.foodId !== foodId)
-        
-      }));
+      this.setState(prevState => ({food: prevState.food.filter(food => food.foodId !== foodId)}));
       let url = "https://localhost:44300/api/foods/" + foodId;
       fetch(url, {
           method: "DELETE", // *GET, POST, PUT, DELETE, etc.
@@ -63,10 +80,10 @@ class ListFoodsApp extends Component {
           <thead>
             <tr>
               <th>#</th>
-              <th>foodName</th>
-              <th>foodCarbonhydrate</th>
-              <th>foodProtein</th>
-              <th>foodFat</th>
+              <th>Name</th>
+              <th>Carbs</th>
+              <th>Prots</th>
+              <th>Fats</th>
               <th>Actions</th>
             </tr>
           </thead>
