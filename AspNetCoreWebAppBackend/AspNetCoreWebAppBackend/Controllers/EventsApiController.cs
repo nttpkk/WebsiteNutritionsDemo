@@ -13,6 +13,7 @@ namespace AspNetCoreWebAppBackend.Controllers
     [ApiController]
     public class EventsApiController : ControllerBase
     {
+        [HttpGet]
         [Route("")]
         public List<Events> Listing()
         {
@@ -21,6 +22,51 @@ namespace AspNetCoreWebAppBackend.Controllers
 
             return allEvents;
         }
+        [HttpPost]
+        [Route("")]
+        public bool CreateNewEvent([FromBody] Events newEvent)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            context.Events.Add(newEvent);
+            context.SaveChanges();
+            return true;
+        }
+
+        [HttpPut]
+        [Route("{eventID}")]
+        public Events ModifyEvent(int eventID, Events updatedEvent)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            Events eventVariable = context.Events.Find(eventID);
+            if(eventVariable == null)
+            {
+                return null;
+            }
+            eventVariable.EventDate = updatedEvent.EventDate;
+            context.SaveChanges();
+
+            return eventVariable;
+        }
+
+        [HttpDelete]
+        [Route("{eventID}")]
+        public bool DeleteEvent(int eventID)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            Events eventVariable = context.Events.Find(eventID);
+
+            if (eventVariable == null)
+            {
+                return false;
+            }
+
+            context.Events.Remove(eventVariable);
+            context.SaveChanges();
+
+            return true;
+        }
+
+
         //private readonly NutritionsDBContext _context;
 
         //public EventsApiController(NutritionsDBContext context)

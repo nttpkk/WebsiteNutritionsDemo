@@ -38,19 +38,19 @@ namespace AspNetCoreWebAppBackend.Controllers
         public Users ModifyUser(int userID, [FromBody] Users updatedUser)
         {
             NutritionsDBContext context = new NutritionsDBContext();
-            Users user = context.Users.Find(userID);
+            Users userVariable = context.Users.Find(userID);
 
             // Are we able to find user with given ID?
-            if (user == null)
+            if (userVariable == null)
             {
                 return null;
             }
 
             // modification takes places
-            user.UserName = updatedUser.UserName;
+            userVariable.UserName = updatedUser.UserName;
             context.SaveChanges();
 
-            return user;
+            return userVariable;
         }
 
         [HttpDelete]
@@ -58,14 +58,14 @@ namespace AspNetCoreWebAppBackend.Controllers
         public bool DeleteUser(int userID)
         {
             NutritionsDBContext context = new NutritionsDBContext();
-            Users user = context.Users.Find(userID);
+            Users userVariable = context.Users.Find(userID);
 
-            if (user == null)
+            if (userVariable == null)
             {
                 return false;
             }
 
-            context.Users.Remove(user);
+            context.Users.Remove(userVariable);
             context.SaveChanges();
 
             return true;

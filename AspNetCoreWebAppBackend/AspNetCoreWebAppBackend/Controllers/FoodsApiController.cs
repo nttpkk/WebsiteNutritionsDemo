@@ -13,6 +13,7 @@ namespace AspNetCoreWebAppBackend.Controllers
     [ApiController]
     public class FoodsApiController : ControllerBase
     {
+        [HttpGet]
         [Route("")]
         public List<Foods> Listing()
         {
@@ -21,6 +22,50 @@ namespace AspNetCoreWebAppBackend.Controllers
 
             return allFoods;
         }
+        [HttpPost]
+        [Route("")]
+        public bool CreateNewEvent([FromBody] Events newEvent)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            context.Events.Add(newEvent);
+            context.SaveChanges();
+            return true;
+        }
+
+        [HttpPut]
+        [Route("{foodID}")]
+        public Events ModifyEvent(int foodID, Events updatedEvent)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            Events foodVariable = context.Events.Find(foodID);
+            if (foodVariable == null)
+            {
+                return null;
+            }
+            foodVariable.FoodAmount = updatedEvent.FoodAmount;
+            context.SaveChanges();
+
+            return foodVariable;
+        }
+
+        [HttpDelete]
+        [Route("{foodID}")]
+        public bool DeleteEvent(int foodID)
+        {
+            NutritionsDBContext context = new NutritionsDBContext();
+            Events foodVariable = context.Events.Find(foodID);
+
+            if (foodVariable == null)
+            {
+                return false;
+            }
+
+            context.Events.Remove(foodVariable);
+            context.SaveChanges();
+
+            return true;
+        }
+
         //private readonly NutritionsDBContext _context;
 
         //public FoodsApiController(NutritionsDBContext context)
