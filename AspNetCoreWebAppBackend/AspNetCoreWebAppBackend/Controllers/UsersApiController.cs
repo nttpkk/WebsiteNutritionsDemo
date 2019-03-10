@@ -48,6 +48,7 @@ namespace AspNetCoreWebAppBackend.Controllers
 
             // modification takes places
             userVariable.UserName = updatedUser.UserName;
+            userVariable.UserBmi = updatedUser.UserBmi;
             context.SaveChanges();
 
             return userVariable;
