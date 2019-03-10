@@ -23,7 +23,7 @@ namespace AspNetCoreWebAppBackend.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=Desktop\\SQLEXPRESS;Database=NutritionsDB;Trusted_Connection=True;");
             }
         }
@@ -92,6 +92,8 @@ namespace AspNetCoreWebAppBackend.Database
                 entity.HasKey(e => e.UserId);
 
                 entity.Property(e => e.UserId).HasColumnName("userID");
+
+                entity.Property(e => e.UserBmi).HasColumnName("userBMI");
 
                 entity.Property(e => e.UserName)
                     .HasColumnName("userName")
