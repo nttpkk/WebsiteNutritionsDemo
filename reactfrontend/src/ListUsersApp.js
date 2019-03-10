@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./ListUsersForm";
 
-class NewApp extends Component {
+class ListUsersApp extends Component {
   constructor(props) {
     super(props);
 
@@ -89,4 +89,4 @@ class NewApp extends Component {
     );
   }
 }
-export default NewApp
+export default ListUsersApp

@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import NewApp from './ListUsersApp';
+import ListUsersApp from './ListUsersApp';
 
 ReactDOM.render(
     <div>
-    <NewApp/>
+    <ListUsersApp/>
     </div>
     , document.getElementById('root'));
 
