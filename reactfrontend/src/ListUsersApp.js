@@ -4,19 +4,35 @@ import Form from "./ListUsersForm";
 class ListUsersApp extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       people: []
     };
-
     this.addPerson = this.addPerson.bind(this);
     this.deletePerson = this.deletePerson.bind(this);
   }
 
-  addPerson(id, name, bmi) {
+  addPerson(name, bmi) {
     this.setState(prevState => ({
-      people: [...prevState.people, {id, name, bmi}]
+      people: [...prevState.people, { name, bmi }]
     }));
+          let data = 
+      {
+        "userName": name,
+        "userBMI": bmi,
+    };
+    let url = "https://localhost:44300/api/users/";
+    fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json"
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+      }); 
   }
 
   componentDidMount() {
@@ -24,8 +40,7 @@ class ListUsersApp extends Component {
   }
 
   getPeople() {
-    let url = "https://localhost:44300/api/users"
-    fetch(url) // https://jsonplaceholder.typicode.com/users
+    fetch("https://localhost:44300/api/users") // https://jsonplaceholder.typicode.com/users
       .then(response => response.json())
       .then(response => this.setState({ people: response }))
       .catch(error => console.log(error));
@@ -35,7 +50,6 @@ class ListUsersApp extends Component {
     return () => {
       this.setState(prevState => ({
         people: prevState.people.filter(person => person.userId !== userId)
-        
       }));
       let url = "https://localhost:44300/api/users/" + userId;
       fetch(url, {
@@ -55,7 +69,6 @@ class ListUsersApp extends Component {
 
   render() {
     console.log(this.state);
-
     return (
       <div className="App">
         <Form addPerson={this.addPerson} />

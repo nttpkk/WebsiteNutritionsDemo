@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./OldForm123";
 
-class App extends Component {
+class OldApp123 extends Component {
   constructor(props) {
     super(props);
 
@@ -74,4 +74,4 @@ class App extends Component {
     );
   }
 }
-export default App
+export default OldApp123

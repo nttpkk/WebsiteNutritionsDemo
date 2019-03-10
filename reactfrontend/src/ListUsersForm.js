@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class NewForm extends Component {
+class ListUsersForm extends Component {
   constructor() {
     super();
     this.formSubmit = this.formSubmit.bind(this);
@@ -9,10 +9,10 @@ class NewForm extends Component {
   formSubmit(event) {
     event.preventDefault();
     const form = event.target;
-    const id = form.elements["id"].value;
+    // const id = form.elements["id"].value;
     const name = form.elements["name"].value;
     const bmi = form.elements["bmi"].value;
-    this.props.addPerson(id, name, bmi);
+    this.props.addPerson(name, bmi);
     form.reset();
   }
 
@@ -27,4 +27,4 @@ class NewForm extends Component {
   }
 }
 
-export default NewForm;
+export default ListUsersForm;

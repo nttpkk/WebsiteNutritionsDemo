@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import ListUsersApp from './ListUsersApp';
+import ListFoodsApp from './ListFoodsApp';
+import OldApp123 from './OldApp123';
 
 ReactDOM.render(
     <div>
     <ListUsersApp/>
+    <OldApp123/>
     </div>
     , document.getElementById('root'));
 
