@@ -1,1 +1,4 @@
 Scaffold-DbContext "Server=Desktop\SQLEXPRESS;Database=NutritionsDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Database
+
+--- T‰m‰ forcettaa ja kirjoittaa aikasemman p‰‰lle. Ei v‰ltt‰m‰tt‰ paras ratkaisu, mutta toimiva.
+Scaffold-DbContext "Server=Desktop\SQLEXPRESS;Database=NutritionsDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Database Models -Force
