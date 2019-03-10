@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-class Userlist extends Component {
+class ListFoods extends Component {
     constructor(props) {
         super(props);
-        console.log("Userlist.constructor");
+        console.log("ListFoods.constructor");
         this.state = { downloaded: false, data: null };
     }
     componentDidMount() {
-        console.log("Userlist.componentDidMount");
+        console.log("ListFoods.componentDidMount");
         let komponentti = this;
-        fetch('https://localhost:44300/api/users')
+        fetch('https://localhost:44300/api/foods')
         .then(response => response.json())
         .then(json => {
             console.log("Fetch-call ready!");
@@ -17,10 +17,10 @@ class Userlist extends Component {
             komponentti.setState({downloaded: true, data: json});
             console.log("SetState-routine has been called.");
         });
-        console.log("Userlist.componentDidMount: fetch-call made");
+        console.log("ListFoods.componentDidMount: fetch-call made");
     }
   render() {
-    console.log("Userlist.render");
+    console.log("ListFoods.render");
     if (this.state.downloaded === false) {
         return (
             <div>
@@ -31,24 +31,32 @@ class Userlist extends Component {
     else {
         let users = [];
         for (let index = 0; index < this.state.data.length; index++) {
-            let name = this.state.data[index].userName;
+            let name = this.state.data[index].foodName;
+            let carbs = this.state.data[index].foodCarbonhydrate;
+            let prots = this.state.data[index].foodProtein;
+            let fats = this.state.data[index].foodFat;
             users.push(
               <tr>
-                <th scope="row">{index+1}</th>
+                {/* <th scope="row">{index+1}</th> */}
                 <td>{name}</td>
+                <td>{carbs}</td>
+                <td>{prots}</td>
+                <td>{fats}</td>
               </tr>);
         }
         return (
             <div>
                 <p></p>
-                <h1>Users of Nutrition.com</h1>
+                <h1>Foods of Nutrition.com</h1>
                 <p></p>
 
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">User Name</th>
+                        <th scope="col">A</th>
+                        <th scope="col">B</th>
+                        <th scope="col">C</th>
+                        <th scope="col">D</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,4 +69,4 @@ class Userlist extends Component {
   }
 }
 
-export default Userlist;
+export default ListFoods;

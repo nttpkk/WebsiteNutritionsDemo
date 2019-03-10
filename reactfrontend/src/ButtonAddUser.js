@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 class ButtonAddUser extends Component {
+
   AddUser(){
     let data = 
     {
-      "userName": "ReactTEST",
-      "events": []
+      "userName": "ReactTEST", 
   };
 
   let url = "https://localhost:44300/api/users";

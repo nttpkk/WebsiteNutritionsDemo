@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Userlist from './Userlist';
-import Navbar from './Navbar';
-import ButtonAddUser from './ButtonAddUser';
+import AddUser from './AddUser';
+import ListFoods from './ListFoods';
+
+
 
 ReactDOM.render(
     <div>
-        {/* <App /> */}
-        <Navbar/>
-        <Userlist/>
-        <ButtonAddUser/>
+        <AddUser/>
+        <ListFoods/>
     </div>
     , document.getElementById('root'));
 
